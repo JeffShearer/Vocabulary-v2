@@ -10,7 +10,13 @@ gem 'coffee-rails', '~> 4.0.0'
 
 gem 'jquery-rails'
 
+gem 'jquery-turbolinks'
+
+gem 'masonry-rails', '~> 0.2.0'
+
 gem 'turbolinks'
+
+gem 'paperclip', '~> 3.0'
 
 gem 'jbuilder', '~> 2.0'
 

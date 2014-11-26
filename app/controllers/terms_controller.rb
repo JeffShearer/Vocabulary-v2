@@ -1,6 +1,8 @@
 class TermsController < ApplicationController
   before_action :set_term, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :correct_user, only: [:edit, :update, :destroy]
+  
   def index
     @terms = Term.all
   end
@@ -9,14 +11,14 @@ class TermsController < ApplicationController
   end
 
   def new
-    @term = Term.new
+    @term = current_user.terms.build
   end
 
   def edit
   end
 
   def create
-    @term = Term.new(term_params)
+    @term = current_user.terms.build(term_params)
     if @term.save
       redirect_to @term, notice: 'Term was successfully created.'
     else
@@ -43,6 +45,10 @@ class TermsController < ApplicationController
       @term = Term.find(params[:id])
     end
 
+    def correct_user
+      @term = current_user.terms.find_by(id: params[:id])
+      redirect_to terms_path, notice: "You can't edit someone else's term" if @term.nil?
+    end 
     # Never trust parameters from the scary internet, only allow the white list through.
     def term_params
       params.require(:term).permit(:description)
