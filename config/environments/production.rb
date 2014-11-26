@@ -79,4 +79,7 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # Required for Heroku - note to update the hostname to YOUR hostname, which may be different than below:
+  config.action_mailer.default_url_options = { :host => 'http://vocabulary-v2.herokuapp.com/' }
 end
