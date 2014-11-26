@@ -1,18 +1,21 @@
-<h1>Your Terms</h1>
-
-
+<%= render 'pages/home' unless user_signed_in? %>
 <div id="terms" class="transitions-enabled">
   <% @terms.each do |term| %>
-    <div class="box panel panel-default">
-      <div class="panel-body">
-        <%= term.description %>
-        <%= term.user.email if term.user %>
-        <%= link_to 'Show', term %>
-        <% if term.user == current_user %>
-          <%= link_to 'Edit', edit_term_path(term) %>
-          <%= link_to 'Destroy', term, method: :delete, data: { confirm: 'Are you sure?' } %>
-        <% end %>
+    
+    <%= link_to term do %>
+      <div class="box panel panel-default">
+        <div class="panel-body">
+          <%= term.description %>
+          <br/>
+          <%= term.user.email if term.user %>
+          <% if term.user == current_user %>
+            <div class="actions">
+              <%= link_to 'Edit', edit_term_path(term) %>
+              <%= link_to 'Destroy', term, method: :delete, data: { confirm: 'Are you sure?' } %>
+            </div>
+          <% end %>
+        </div>
       </div>
-    </div>
+    <% end %>
   <% end %>
 </div>

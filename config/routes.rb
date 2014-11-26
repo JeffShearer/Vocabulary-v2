@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :terms
 
   devise_for :users
-  root 'pages#home'
+  root 'terms#index'
   get "about" => "pages#about"
   get "contact" => "pages#contact"
   # The priority is based upon order of creation: first created -> highest priority.
