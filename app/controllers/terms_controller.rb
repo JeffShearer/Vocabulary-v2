@@ -4,7 +4,7 @@ class TermsController < ApplicationController
   before_action :correct_user, only: [:edit, :update, :destroy]
   
   def index
-    @terms = Term.all
+    @terms = Term.all.paginate(:page => params[:page], :per_page => 4)
   end
 
   def show

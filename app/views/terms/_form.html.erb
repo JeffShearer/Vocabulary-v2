@@ -10,7 +10,14 @@
       </ul>
     </div>
   <% end %>
-
+  <div class="form-group">
+    <%= f.label :Term%><br>
+    <%= f.text_field :term_name, class: "form-control"  %>
+  </div>
+  <div class="form-group"> <!-- This isn't working right now, but sort of a demo of how select fields work with boostrap forms and ruby-->
+    <%= f.label :Part_of_speech%><br>
+    <%= f.select :term_part_of_speech, options_for_select([['Noun', 1], ['Verb', 2]]), {},class: "form-control"  %>
+  </div>
   <div class="form-group">
     <%= f.label :description%><br>
     <%= f.text_field :description, class: "form-control"  %>
@@ -18,4 +25,5 @@
   <div class="form-group">
     <%= f.submit class: "btn btn-primary"%>
   </div>
+
 <% end %>

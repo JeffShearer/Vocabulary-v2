@@ -26,6 +26,10 @@ gem 'bootstrap-sass'
 
 gem 'devise'
 
+gem 'will_paginate', '~> 3.0.5'
+
+gem 'will_paginate-bootstrap'
+
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
 
 group :development, :test do
