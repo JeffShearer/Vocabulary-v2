@@ -11,13 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141126215846) do
+ActiveRecord::Schema.define(version: 20141127000444) do
 
   create_table "terms", force: true do |t|
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.string   "term_name"
+    t.string   "term_part_of_speech"
+    t.string   "term_language"
+    t.text     "term_definition"
+    t.string   "term_gender"
   end
 
   add_index "terms", ["user_id"], name: "index_terms_on_user_id"
