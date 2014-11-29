@@ -1,16 +1,52 @@
-<%= link_to 'Back', terms_path %>
-
 <div class="row">
 	<div class="col-md-offset-2 col-md-8">
-		 <div class="panel panel-default">
-		 		<div class="panel-heading center">
-				  <h2><%= @term.description %></h2>
+		 <div class="panel panel-primary">
+		 		<div class="panel-heading">
+    				<div class="panel-title">
+			  			<h1><%= @term.term_name %></h1>
+				  	</div>
 				</div>
 				<div class="panel-body">
-					<p><%= @term.user.email if @term.user %></p>
-					<% if @term.user == current_user %>
-						<%= link_to 'Edit', edit_term_path(@term) %> |
+					<div class="row">
+						<div class="col-md-4">
+							<h3>Definition</h3>
+							<p><%= @term.term_definition %></p>
+						</div>
+						
+						<div class="col-md-4">
+							<h3>Details</h3>
+							<p>Gender: <%= @term.term_gender %></p>
+							<p>Part of Speech: <%= @term.term_part_of_speech %></p>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<h3>Example</h3>
+						<blockquote>#</blockquote>
+					</div>
+					<p>Created by <%= @term.user.name if @term.user %></p>
+					<div class="btn-group center" role="group">
+						<% if @term.user == current_user %>
+							<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Add to Queue">
+								<span class="glyphicon glyphicon-star-empty"></span>
+							</button>
+
+							<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Edit">
+								<%= link_to edit_term_path(@term) do %>	
+										<span class="glyphicon glyphicon-edit"></span>	
+								<% end %>
+							</button>
+
+							<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Delete">
+								<%= link_to @term, method: :delete, data: { confirm: 'Are you sure?' } do %>
+	              		<span class="glyphicon glyphicon-trash"></span>
+			          <% end %>   
+             </button>	   
 					<% end %> 
+				</div>
+				<br/>
+				<%= link_to terms_path do %>
+					<span class="glyphicon glyphicon-arrow-left"></span> Go back
+				<% end %>
 			</div>
 		</div>
 	</div>

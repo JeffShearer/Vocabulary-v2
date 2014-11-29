@@ -1,7 +1,7 @@
 class TermsController < ApplicationController
   before_action :set_term, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :correct_user, only: [:edit, :update, :destroy]
+  before_action :correct_user, only: [:edit, :update, :destroy] 
   
   def index
     @terms = Term.all.paginate(:page => params[:page], :per_page => 4)
@@ -51,6 +51,6 @@ class TermsController < ApplicationController
     end 
     # Never trust parameters from the scary internet, only allow the white list through.
     def term_params
-      params.require(:term).permit(:description)
+      params.require(:term).permit(:description, :term_name, :term_part_of_speech, :term_language, :term_definition, :term_gender)
     end
 end
